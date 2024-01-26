@@ -19,7 +19,7 @@ import json
 
 from calctree.client import CalcTreeClient
 
-client = CalcTreeClient('m4hmSY0Vm5bwWN0hQwXj1ZdB7CqdNubo')
+client = CalcTreeClient('YOUR_API_KEY')
 
 res = client.run_calculation("6fd16232-39e3-44a9-aee2-d6ad375698b0",
                              [{"name": "cylinder_radius", "formula": "1000"}]

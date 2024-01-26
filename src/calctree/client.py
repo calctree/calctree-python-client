@@ -35,7 +35,7 @@ class CalcTreeClient:
                 Each Attributes instance has the following attributes:
                     name (str): The parameter name.
                     value (str): The value associated with the parameter.
-        """ # noqa
+        """  # noqa
         calculation_request_response = self._request_calculation(ct_cells, page_id)
         return self._process_response(calculation_request_response)
 
@@ -43,7 +43,7 @@ class CalcTreeClient:
         calculation_result = json.loads(response)
         return [{'name': j['title'], 'value': str(j['value'])} for j in calculation_result]
 
-    def _request_calculation(self, ct_cells,  page_id: str):
+    def _request_calculation(self, ct_cells, page_id: str):
         url = f'{self._calctree_host}{self._run_calculation_endpoint}'
         headers = self._prepare_headers()
         body = self._prepare_body(ct_cells, page_id)
@@ -51,7 +51,7 @@ class CalcTreeClient:
         payload = json.dumps(body).encode('utf-8')
 
         req = request.Request(url, payload, headers)
-        with request.urlopen(req) as request_result:
+        with request.urlopen(req) as request_result:  # noqa
             self._raise_exception_for_failed_request(request_result)
             return request_result.read()
 
@@ -63,11 +63,11 @@ class CalcTreeClient:
     def _prepare_body(self, ct_cells, page_id: str):
         return {
             'pageId': page_id,
-            'ctCells': ct_cells
+            'ctCells': ct_cells,
         }
 
     def _prepare_headers(self):
         return {
             'x-api-key': self._api_key,
-            'content-type': 'application/json'
+            'content-type': 'application/json',
         }

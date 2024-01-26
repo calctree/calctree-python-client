@@ -23,11 +23,11 @@ jobs:
 
     - name: Run Flake8
       run: |
-        python -m flake8 calctree_client
+        python -m flake8 calctree
 
     - name: Run Tests with Coverage
       run: |
-        python -m pytest --cov=src/calctree_client tests/
+        python -m pytest --cov=src/calctree tests/
       env:
         COVERAGE_FILE: ${{ github.workspace }}/coverage/.coverage
 

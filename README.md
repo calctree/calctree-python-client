@@ -15,27 +15,16 @@ pip install calctree-python-client
 To use the CalcTree Python Client, you need to obtain an API key from CalcTree. Once you have your API key, you can initialize the client and start running calculations.
 
 ```python
-from src.calctree_client.calctree_client import CalcTreeClient
-from src.calctree_client.models import CTCell
+import json
 
-# Replace 'your_api_key' with your actual CalcTree API key
-api_key = 'your_api_key'
+from calctree.client import CalcTreeClient
 
-# Initialize the CalcTree client
-client = CalcTreeClient(api_key)
+client = CalcTreeClient('m4hmSY0Vm5bwWN0hQwXj1ZdB7CqdNubo')
 
-# Define your calculation parameters using CTCell instances
-ct_cells = [
-    CTCell(param="capacity", value="1000"),
-    CTCell(param="cylinder_radius", value="10")
-]
+res = client.run_calculation("6fd16232-39e3-44a9-aee2-d6ad375698b0",
+                             [{"name": "cylinder_radius", "formula": "1000"}]
+                             )
 
-# Run a calculation
-page_id = '6fd16232-39e3-44a9-aee2-d6ad375698b0'
-calculation_result = client.run_calculation(page_id, ct_cells)
-
-# Print the result
-for result_item in calculation_result:
-    print(f"{result_item.param}: {result_item.value}")
+print(res)
 ```
 

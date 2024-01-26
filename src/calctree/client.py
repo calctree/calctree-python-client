@@ -28,7 +28,6 @@ class CalcTreeClient:
                 Each Parameters instance has the following attributes:
                     name (str): The parameter name, the same as on the page.
                     formula (str): The value associated with the parameter.
-            host (str, optional): The API host. Defaults to 'https://api.calctree.com'.
 
         Returns:
             List[Attributes]: A list of Attributes instances representing the calculation result.

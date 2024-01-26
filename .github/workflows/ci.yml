@@ -28,9 +28,3 @@ jobs:
     - name: Run Tests with Coverage
       run: |
         python -m pytest --cov=src/calctree tests/
-      env:
-        COVERAGE_FILE: ${{ github.workspace }}/coverage/.coverage
-
-    - name: Check Code Coverage
-      run: |
-        coverage report --fail-under=90

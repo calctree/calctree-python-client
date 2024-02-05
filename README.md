@@ -24,7 +24,6 @@ client = CalcTreeClient('YOUR_API_KEY')
 res = client.run_calculation("6fd16232-39e3-44a9-aee2-d6ad375698b0",
                              [{"name": "cylinder_radius", "formula": "1000"}]
                              )
-
 print(res)
 ```
 

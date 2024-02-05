@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "calctree-python-client"
+version = "0.1.0"
+description = ""
+authors = ["CalcTree"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[tool.poetry.group.dev.dependencies]
+flake8 = "^7.0.0"
+wemake-python-styleguide = "^0.18.0"
+pytest = "^8.0.0"
+coverage = "^7.4.1"
+pytest-cov = "^4.1.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

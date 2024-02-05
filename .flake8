@@ -1,0 +1,18 @@
+[flake8]
+max-line-length = 120
+extend-ignore = E203, W503
+exclude = .git, __pycache__, .venv
+
+# Plugins
+ignore = D, WPS
+
+# WPS Configuration
+max-function-args = 10
+max-locals = 15
+max-module-members = 15
+max-method-branches = 10
+max-expressions = 20
+
+# WPS: Naming Conventions
+min-name-length = 3
+sphinx = True

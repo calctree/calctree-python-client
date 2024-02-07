@@ -26,4 +26,5 @@ jobs:
 
     - name: Run Tests with Coverage
       run: |
-        python -m pytest --cov=src/calctree tests/
+        poetry run python -m pytest --cov=src/calctree tests/
+

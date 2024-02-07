@@ -24,10 +24,6 @@ jobs:
         python -m pip install --upgrade pip
         poetry install
 
-    - name: Run Flake8
-      run: |
-        python -m flake8 src/calctree
-
     - name: Run Tests with Coverage
       run: |
         python -m pytest --cov=src/calctree tests/

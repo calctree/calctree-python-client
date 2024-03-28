@@ -14,6 +14,8 @@ pip install calctree
 # Getting Started
 To use the CalcTree Python Client, you need to obtain an API key from CalcTree. Once you have your API key, you can initialize the client and start running calculations.
 
+Remember to replace YOUR_API_KEY with your actual API key, YOUR_PAGE_ID with the ID of the page you want to run calculations on, and YOUR_PARAM_NAME with the name of the parameter you want to set the value for.
+
 ```python
 import json
 
@@ -21,8 +23,8 @@ from calctree.client import CalcTreeClient
 
 client = CalcTreeClient('YOUR_API_KEY')
 
-res = client.run_calculation("6fd16232-39e3-44a9-aee2-d6ad375698b0",
-                             [{"name": "cylinder_radius", "formula": "1000"}]
+res = client.run_calculation("YOUR_PAGE_ID",
+                             [{"name": "YOUR_PARAM_NAME", "formula": "1000"}]
                              )
 
 print("Result as a dictionary:")

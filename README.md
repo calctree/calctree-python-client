@@ -8,7 +8,7 @@ The CalcTree Python Client is a Python library that provides a convenient interf
 You can install the CalcTree Python Client using pip:
 
 ```bash
-pip install calctree-python-client
+pip install calctree
 ```
 
 # Getting Started
@@ -24,6 +24,17 @@ client = CalcTreeClient('YOUR_API_KEY')
 res = client.run_calculation("6fd16232-39e3-44a9-aee2-d6ad375698b0",
                              [{"name": "cylinder_radius", "formula": "1000"}]
                              )
-print(res)
+
+print("Result as a dictionary:")
+print(result.to_dict())
+
+print("Value of param 'cylinder_radius':")
+print(result.get_param_value("cylinder_radius"))
+
+print("List of params:")
+print(result.get_params())
+
+print("List of values:")
+print(result.get_values())
 ```
 

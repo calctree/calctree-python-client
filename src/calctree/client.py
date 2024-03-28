@@ -1,6 +1,8 @@
 import json
 from urllib import request
 
+from src.calctree.calculation_result import CalculationResult
+
 
 class CalcTreeClient:
     """Client for interacting with the CalcTree API.
@@ -19,7 +21,7 @@ class CalcTreeClient:
         self._calctree_host = 'https://api.calctree.com'
         self._run_calculation_endpoint = '/api/calctree-cell/run-calculation'
 
-    def run_calculation(self, page_id: str, ct_cells, host: str = 'https://api.calctree.com'):
+    def run_calculation(self, page_id: str, ct_cells, host: str = 'https://api.calctree.com') -> CalculationResult:
         """Run a calculation using the CalcTree API.
 
         Args:
@@ -30,17 +32,10 @@ class CalcTreeClient:
                     formula (str): The value associated with the parameter.
 
         Returns:
-            List[Attributes]: A list of Attributes instances representing the calculation result.
-                Each Attributes instance has the following attributes:
-                    name (str): The parameter name.
-                    value (str): The value associated with the parameter.
+            CalculationResult: The result of the calculation.
         """  # noqa
         calculation_request_response = self._request_calculation(ct_cells, page_id)
-        return self._process_response(calculation_request_response)
-
-    def _process_response(self, response):
-        calculation_result = json.loads(response)
-        return [{'name': j['title'], 'value': str(j['value'])} for j in calculation_result]
+        return CalculationResult(calculation_request_response)
 
     def _request_calculation(self, ct_cells, page_id: str):
         url = f'{self._calctree_host}{self._run_calculation_endpoint}'

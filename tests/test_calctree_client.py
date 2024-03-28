@@ -33,7 +33,7 @@ class TestCalcTreeClient(unittest.TestCase):
 
         client_response = self.client.run_calculation(page_id, ct_cells)
 
-        for expected_item, actual_item in zip(expected_client_response, client_response):
+        for expected_item, actual_item in zip(expected_client_response, client_response.to_dict()):
             self.assertEqual(expected_item["name"], actual_item["name"])
             self.assertEqual(expected_item["value"], actual_item["value"])
 

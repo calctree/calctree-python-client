@@ -1,7 +1,7 @@
 import json
 from typing import List
 
-from src.calctree.exceptions import ParameterNotFoundException
+from exceptions import ParameterNotFoundException
 
 
 class CalculationResult:

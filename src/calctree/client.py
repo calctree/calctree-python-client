@@ -1,7 +1,8 @@
 import json
+import ssl
 from urllib import request
 
-from src.calctree.calculation_result import CalculationResult
+from calculation_result import CalculationResult
 
 
 class CalcTreeClient:
@@ -34,20 +35,30 @@ class CalcTreeClient:
         Returns:
             CalculationResult: The result of the calculation.
         """  # noqa
-        calculation_request_response = self._request_calculation(ct_cells, page_id)
-        return CalculationResult(calculation_request_response)
+        try:
+            calculation_request_response = self._request_calculation(ct_cells, page_id)
+            return CalculationResult(calculation_request_response)
+        except Exception as e:
+            raise Exception(f'Failed to run calculation: {e}')
 
     def _request_calculation(self, ct_cells, page_id: str):
         url = f'{self._calctree_host}{self._run_calculation_endpoint}'
         headers = self._prepare_headers()
         body = self._prepare_body(ct_cells, page_id)
+        ctx = self._prepare_ssl_context()
 
         payload = json.dumps(body).encode('utf-8')
 
         req = request.Request(url, payload, headers)
-        with request.urlopen(req) as request_result:  # noqa
+        with request.urlopen(req, context=ctx) as request_result:  # noqa
             self._raise_exception_for_failed_request(request_result)
             return request_result.read()
+
+    def _prepare_ssl_context(self):
+        ctx = ssl.create_default_context()
+        ctx.check_hostname = False
+        ctx.verify_mode = ssl.CERT_NONE
+        return ctx
 
     def _raise_exception_for_failed_request(self, request_result):
         if not (200 <= request_result.status < 300):

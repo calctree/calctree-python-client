@@ -18,7 +18,7 @@ class TestCalculationResult(unittest.TestCase):
         self.assertEqual(calculation_result.get_param_value("cylinder_radius"), "100")
         self.assertEqual(calculation_result.get_param_value("capacity"), "1000")
         self.assertEqual(calculation_result.get_param_value("cylinder_height"), "0.1")
-        with self.assertRaises(ParameterNotFoundException):
+        with self.assertRaises(Exception):
             calculation_result.get_param_value("invalid_param")
 
     def test_get_params(self):

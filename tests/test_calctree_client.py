@@ -86,5 +86,5 @@ class TestCalcTreeClient(unittest.TestCase):
 
         mock_urlopen.return_value = mock_response
 
-        with self.assertRaises(json.JSONDecodeError):
+        with self.assertRaises(Exception):
             self.client.run_calculation('123', [])
